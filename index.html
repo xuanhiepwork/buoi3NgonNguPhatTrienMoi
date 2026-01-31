@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Trần Xuân Hiệp - 2280618989</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .toolbar { display: flex; gap: 20px; background: #f4f4f4; padding: 15px; border-radius: 8px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        
+        /* CSS Yêu cầu: 1 dòng đen, 1 dòng trắng */
+        tbody tr:nth-child(odd) { background-color: #000; color: #fff; }
+        tbody tr:nth-child(even) { background-color: #fff; color: #000; }
+
+        /* CSS Yêu cầu: Hiển thị toàn bộ hình */
+        .product-img { width: 80px; height: 80px; object-fit: cover; border-radius: 4px; }
+
+        /* CSS Yêu cầu: Ẩn description, chỉ hiện khi hover */
+        .desc-col { visibility: hidden; opacity: 0; transition: 0.3s; max-width: 300px; }
+        tr:hover .desc-col { visibility: visible; opacity: 1; }
+
+        th { cursor: pointer; background-color: #444; color: white; }
+        .pagination { margin-top: 15px; }
+        button { padding: 5px 10px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>Dashboard Quản lý Sản phẩm - API</h1>
+
+    <div class="toolbar">
+        <div>
+            <label>Tìm kiếm:</label>
+            <input type="text" id="search_txt" placeholder="Nhập tiêu đề..." oninput="handleSearch()">
+        </div>
+        <div>
+            <label>Hiển thị:</label>
+            <select id="page_size" onchange="handlePageSize()">
+                <option value="5">5 dòng</option>
+                <option value="10" selected>10 dòng</option>
+                <option value="20">20 dòng</option>
+            </select>
+        </div>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th onclick="sortData('id')">ID ↕</th>
+                <th onclick="sortData('title')">Title ↕</th>
+                <th onclick="sortData('price')">Price ↕</th>
+                <th>Image</th>
+                <th>Description (Hover)</th>
+            </tr>
+        </thead>
+        <tbody id="table-body"></tbody>
+    </table>
+
+    <div id="pagination" class="pagination"></div>
+
+    <script src="buoi3.js"></script>
+</body>
+</html>
